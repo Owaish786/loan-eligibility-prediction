@@ -1,0 +1,334 @@
+/* Start Global Rule */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-gradient-alt: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e8ba3 100%);
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-dark: #2C3345;
+    --text-light: #64748b;
+    --bg-light: #f8f9fa;
+    --border-color: #e0e0e0;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 40px 20px;
+    transition: background 0.3s ease;
+    position: relative;
+}
+
+/* Animated gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1a2e 100%);
+    background-attachment: fixed;
+}
+
+body.dark-mode::before {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1a2e 100%);
+    background-attachment: fixed;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* End Global Rule */
+
+main .container {
+    width: 100%;
+    max-width: 900px;
+    padding: 50px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode main .container {
+    background: #1e293b;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+main .container h2 {
+    font-size: 42px;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode main .container h2 {
+    color: #a5b4fc;
+}
+
+main .container .des {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 30px 0 25px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode main .container .des {
+    color: #c4b5fd;
+    border-bottom-color: #334155;
+}
+
+.form-section {
+    margin-bottom: 35px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.row .full-width {
+    width: 100%;
+}
+
+.row .left {
+    flex: 1;
+}
+
+.row .right {
+    flex: 1;
+}
+
+main .container .row label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode main .container .row label {
+    color: #e2e8f0;
+}
+
+main .container .row label span {
+    color: var(--danger-color);
+    margin-left: 2px;
+    font-weight: 700;
+}
+
+main .container .input-field {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+body.dark-mode main .container .input-field {
+    background-color: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+main .container .input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+}
+
+body.dark-mode main .container .input-field:focus {
+    background-color: #475569;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25);
+}
+
+main .container .input-field::placeholder {
+    color: var(--text-light);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode main .container .input-field::placeholder {
+    color: #94a3b8;
+}
+
+main .container .input-field:hover:not(:focus) {
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+input:focus {
+    outline: none;
+}
+
+main .container .input-field::placeholder {
+    color: #b8bdc9;
+    font-weight: 400;
+}
+
+main .container .input-field:hover:not(:focus) {
+    border-color: #d0d0d0;
+}
+
+input:focus {
+    outline: none;
+}
+
+.k-btn {
+    display: block;
+    margin: 50px auto 0;
+    background: var(--primary-gradient);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 65px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.k-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.k-btn:hover::before {
+    left: 100%;
+}
+
+.k-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+}
+
+.k-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main .container {
+        padding: 30px 20px;
+    }
+
+    main .container h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .row .left,
+    .row .right,
+    .row .full-width {
+        width: 100%;
+    }
+
+    .k-btn {
+        padding: 13px 40px;
+        font-size: 15px;
+        margin-top: 30px;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+.select-color {
+    color: var(--text-light);
+}
+
+.last-row {
+    margin-bottom: 30px;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .last-row {
+    border-bottom-color: #334155;
+}
+
+.last-row label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+}

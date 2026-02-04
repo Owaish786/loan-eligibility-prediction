@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <title>Loan Eligibility Predictor</title>
+</head>
+
+<body>
+    <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <main>
+        <div class="container">
+            <h2>💳 Loan Eligibility Predictor</h2>
+            <p class="des">Contact Information</p>
+            
+            <form action="{{ url_for('predict') }}" method="post">
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <div class="row">
+                        <div class="full-width">
+                            <label for="ApplicantName">Applicant Name <span class="req">*</span></label>
+                            <input type="text" class="input-field" placeholder="Your full name" name="ApplicantName" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="full-width">
+                            <label for="phoneNumber">Phone Number <span class="req">*</span></label>
+                            <input type="tel" class="input-field" placeholder="+1 (555) 123-4567" name="phoneNumber" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="full-width">
+                            <label for="EmailAddress">Email Address <span class="req">*</span></label>
+                            <input type="email" class="input-field" placeholder="your.email@example.com" name="EmailAddress" required />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Information Section -->
+                <p class="des">Financial Information</p>
+                <div class="form-section">
+                    <div class="row">
+                        <div class="left">
+                            <label for="ApplicantIncome">Applicant Income (monthly) <span class="req">*</span></label>
+                            <input type="number" name="ApplicantIncome" class="input-field" placeholder="Enter amount" required />
+                        </div>
+                        <div class="right">
+                            <label for="CoapplicantIncome">Co-Applicant Income (monthly) <span class="req">*</span></label>
+                            <input type="number" name="CoapplicantIncome" class="input-field" placeholder="Enter amount" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="left">
+                            <label for="LoanAmount">Loan Amount (In thousands) <span class="req">*</span></label>
+                            <input type="number" name="LoanAmount" class="input-field" placeholder="Enter amount" required />
+                        </div>
+                        <div class="right">
+                            <label for="Loan_Amount_Term">Loan Term (In months) <span class="req">*</span></label>
+                            <input type="number" name="Loan_Amount_Term" class="input-field" placeholder="Enter months" required />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Details Section -->
+                <p class="des">Personal Details</p>
+                <div class="form-section">
+                    <div class="row">
+                        <div class="left">
+                            <label for="Gender">Gender <span class="req">*</span></label>
+                            <select class="input-field" name="Gender" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                        <div class="right">
+                            <label for="Married">Marital Status <span class="req">*</span></label>
+                            <select class="input-field" name="Married" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">Married</option>
+                                <option value="0">Single</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="left">
+                            <label for="Education">Education <span class="req">*</span></label>
+                            <select class="input-field" name="Education" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">Graduate</option>
+                                <option value="0">Not Graduate</option>
+                            </select>
+                        </div>
+                        <div class="right">
+                            <label for="Self_Employed">Self Employed <span class="req">*</span></label>
+                            <select class="input-field" name="Self_Employed" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credit & Property Section -->
+                <p class="des">Credit & Property Information</p>
+                <div class="form-section">
+                    <div class="row">
+                        <div class="full-width">
+                            <label for="Credit_History">Credit History <span class="req">*</span></label>
+                            <select class="input-field" name="Credit_History" required>
+                                <option value="">-- Select --</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="left">
+                            <label for="Property_Area_Rural">Property Area (Rural) <span class="req">*</span></label>
+                            <input type="number" name="Property_Area_Rural" class="input-field" placeholder="0 or 1" required />
+                        </div>
+                        <div class="right">
+                            <label for="Property_Area_Semiurban">Property Area (Semi-urban) <span class="req">*</span></label>
+                            <input type="number" name="Property_Area_Semiurban" class="input-field" placeholder="0 or 1" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="left">
+                            <label for="Property_Area_Urban">Property Area (Urban) <span class="req">*</span></label>
+                            <input type="number" name="Property_Area_Urban" class="input-field" placeholder="0 or 1" required />
+                        </div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="k-btn">Check Eligibility</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            
+            // Save preference
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Update icon
+            icon.textContent = isDarkMode ? '☀️' : '🌙';
+        }
+
+        // Load saved preference
+        window.addEventListener('DOMContentLoaded', function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+
+</html>
